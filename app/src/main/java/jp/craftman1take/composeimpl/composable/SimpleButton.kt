@@ -18,6 +18,29 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
+fun TextButton(
+    label: String,
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit = {},
+) {
+    Button(
+        onClick = onClick,
+        modifier = modifier,
+    ) {
+        Text(text = label)
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun TextButtonPreview() {
+    TextButton(
+        label = "This is sample",
+        modifier = Modifier.fillMaxWidth(),
+    )
+}
+
+@Composable
 fun SimpleButton(
     imageVector: ImageVector,
     label: String,

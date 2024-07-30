@@ -5,10 +5,22 @@ import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material3.BottomSheetScaffold
+import androidx.compose.material3.Button
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.rememberBottomSheetScaffoldState
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
@@ -27,15 +39,29 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintSet
 import androidx.constraintlayout.compose.Dimension
 import jp.craftman1take.composeimpl.R
+import jp.craftman1take.composeimpl.composable.SimpleButton
+import jp.craftman1take.composeimpl.composable.TextButton
 import jp.craftman1take.composeimpl.data.Picture
 import jp.craftman1take.composeimpl.ui.theme.ComposeImplTheme
 
 class ContentScaleActivity : AppCompatActivity() {
+    // 確認用なので Pair で実装
+    private val contentScaleList = listOf(
+        "Fit" to ContentScale.Fit,
+        "Inside" to ContentScale.Inside,
+        "Crop" to ContentScale.Crop,
+        "FillWidth" to ContentScale.FillWidth,
+        "FillHeight" to ContentScale.FillHeight,
+        "FillBounds" to ContentScale.FillBounds,
+        "None" to ContentScale.None,
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
-            Surface {
-                ComposeImplTheme {
+            ComposeImplTheme {
+                Surface {
                     ComposeContent()
                 }
             }
@@ -43,83 +69,36 @@ class ContentScaleActivity : AppCompatActivity() {
     }
 
     @Composable
-    fun ComposeContent(modifier: Modifier = Modifier) {
-        val constraintSet = ConstraintSet {
-            val originalLabelRef = createRefFor("originalLabel")
-            val originalImageRef = createRefFor("originalImage")
-            val confirmLabelRef = createRefFor("confirmLabel")
-            val confirmImageRef = createRefFor("confirmImage")
-
-            val guideline = createGuidelineFromTop(0.5f)
-
-            constrain(originalLabelRef) {
-                width = Dimension.matchParent
-                height = Dimension.wrapContent
-                top.linkTo(parent.top, margin = 12.dp)
-            }
-
-            constrain(originalImageRef) {
-                width = Dimension.fillToConstraints
-                height = Dimension.fillToConstraints
-                top.linkTo(originalLabelRef.bottom, margin = 8.dp)
-                bottom.linkTo(guideline)
-                start.linkTo(originalLabelRef.start)
-                end.linkTo(originalLabelRef.end)
-            }
-
-            constrain(confirmLabelRef) {
-                width = Dimension.fillToConstraints
-                height = Dimension.wrapContent
-                top.linkTo(guideline, margin = 12.dp)
-                start.linkTo(originalLabelRef.start)
-                end.linkTo(originalLabelRef.end)
-            }
-
-            constrain(confirmImageRef) {
-                width = Dimension.fillToConstraints
-                height = Dimension.fillToConstraints
-                top.linkTo(confirmLabelRef.bottom, margin = 8.dp)
-                bottom.linkTo(parent.bottom)
-                start.linkTo(originalLabelRef.start)
-                end.linkTo(originalLabelRef.end)
-            }
+    @OptIn(ExperimentalMaterial3Api::class)
+    fun ComposeContent() {
+        val contentScale = remember {
+            mutableStateOf("Fit" to ContentScale.Fit)
         }
+        val scaffoldState = rememberBottomSheetScaffoldState()
 
-        ConstraintLayout(
-            constraintSet = constraintSet,
-            modifier = modifier
-                .padding(start = 12.dp, end = 12.dp)
-                .fillMaxSize(),
+        BottomSheetScaffold(
+            scaffoldState = scaffoldState,
+            sheetPeekHeight = 192.dp,
+            sheetContainerColor = Color(0xFFFAE6D7),
+            sheetTonalElevation = 8.dp,
+            sheetContent = {
+                contentScaleList.forEach { (title, scale) ->
+                    SideSpacedTextButton(
+                        label = title,
+                    ) { contentScale.value = title to scale }
+                }
+            },
         ) {
-            val contentScale: State<ContentScale> = remember { mutableStateOf(ContentScale.Fit) }
-
-            PictureLabelComposable(
-                title = "Original (Fit)",
-                modifier = Modifier.layoutId("originalLabel"),
-            )
-
-            PictureComposable(
-                Picture(0, null, R.drawable.picture_01),
-                contentScale = ContentScale.Fit,
+            ComparePictureContent(
+                contentScaleName = contentScale.value.first,
+                contentScale = contentScale.value.second,
                 modifier = Modifier
-                    .layoutId("originalImage")
-                    .background(color = Color.Gray),
-            )
-
-            PictureLabelComposable(
-                title = "Confirm",
-                modifier = Modifier.layoutId("confirmLabel"),
-            )
-
-            PictureComposable(
-                Picture(0, null, R.drawable.picture_01),
-                contentScale = contentScale.value,
-                modifier = Modifier
-                    .layoutId("confirmImage")
-                    .background(color = Color.Gray),
+                    .padding(12.dp)
+                    .fillMaxSize()
             )
         }
     }
+
 
     @Preview(showBackground = true)
     @Composable
@@ -129,23 +108,76 @@ class ContentScaleActivity : AppCompatActivity() {
 }
 
 @Composable
-fun PictureLabelComposable(title: String, modifier: Modifier = Modifier) {
-    Text(
-        text = title,
-        fontWeight = FontWeight.Bold,
-        color = Color.Black,
-        fontSize = 24.sp,
-        textAlign = TextAlign.Start,
-        modifier = modifier,
-    )
+fun SideSpacedTextButton(label: String, onClick: () -> Unit = {}) {
+    Row(
+        modifier = Modifier.padding(
+            top = 8.dp,
+            bottom = 8.dp,
+            start = 12.dp,
+            end = 12.dp,
+        )
+    ) {
+        TextButton(
+            label = label,
+            modifier = Modifier.fillMaxWidth(),
+            onClick = onClick,
+        )
+    }
 }
 
 @Composable
-fun PictureComposable(picture: Picture, contentScale: ContentScale = ContentScale.Fit, modifier: Modifier = Modifier) {
-    Image(
-        painter = painterResource(id = picture.resId),
-        contentDescription = null,
-        contentScale = contentScale,
+fun ComparePictureContent(
+    contentScaleName: String,
+    contentScale: ContentScale,
+    modifier: Modifier = Modifier,
+) {
+    Column(
+        verticalArrangement = Arrangement.spacedBy(36.dp),
         modifier = modifier,
-    )
+    ) {
+        PictureComposable(
+            title = "Confirm: $contentScaleName",
+            picture = Picture(0, null, R.drawable.picture_01_tmb),
+            modifier = Modifier.layoutId("confirmation"),
+            contentScale = contentScale,
+        )
+
+        PictureComposable(
+            title = "Original (Fit)",
+            picture = Picture(0, null, R.drawable.picture_01_tmb),
+            modifier = Modifier.layoutId("original"),
+            contentScale = ContentScale.Fit,
+        )
+    }
+}
+
+
+@Composable
+fun PictureComposable(
+    title: String,
+    picture: Picture,
+    modifier: Modifier = Modifier,
+    contentScale: ContentScale = ContentScale.Fit,
+) {
+    Column(modifier = modifier) {
+        Text(
+            text = title,
+            fontWeight = FontWeight.Bold,
+            fontSize = 24.sp,
+            textAlign = TextAlign.Start,
+            modifier = modifier,
+        )
+
+        Spacer(modifier = Modifier.height(12.dp))
+
+        Image(
+            painter = painterResource(id = picture.resId),
+            contentDescription = null,
+            contentScale = contentScale,
+            modifier = modifier
+                .fillMaxWidth()
+                .height(240.dp)
+                .background(color = Color.LightGray),
+        )
+    }
 }
