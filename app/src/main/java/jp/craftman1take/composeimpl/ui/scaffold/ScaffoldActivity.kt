@@ -1,4 +1,4 @@
-package jp.craftman1take.composeimpl.ui.mysample
+package jp.craftman1take.composeimpl.ui.scaffold
 
 import android.os.Bundle
 import android.widget.Toast

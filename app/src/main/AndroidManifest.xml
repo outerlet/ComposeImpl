@@ -30,7 +30,7 @@
             android:name=".ui.contentscale.ContentScaleActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.mysample.ScaffoldActivity"
+            android:name=".ui.scaffold.ScaffoldActivity"
             android:exported="false" />
         <activity
             android:name=".ui.composebyfragment.ComposeByFragmentActivity"
