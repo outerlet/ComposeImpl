@@ -78,7 +78,7 @@ class ContentScaleActivity : AppCompatActivity() {
 
         BottomSheetScaffold(
             scaffoldState = scaffoldState,
-            sheetPeekHeight = 192.dp,
+            sheetPeekHeight = 96.dp,
             sheetContainerColor = Color(0xFFFAE6D7),
             sheetTonalElevation = 8.dp,
             sheetContent = {
