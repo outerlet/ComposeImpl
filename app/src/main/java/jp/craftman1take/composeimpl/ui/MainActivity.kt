@@ -14,6 +14,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Create
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -25,6 +26,7 @@ import jp.craftman1take.composeimpl.composable.SimpleButton
 import jp.craftman1take.composeimpl.ui.composebyfragment.ComposeByFragmentActivity
 import jp.craftman1take.composeimpl.ui.constraintlayout.ConstraintLayoutActivity
 import jp.craftman1take.composeimpl.ui.contentscale.ContentScaleActivity
+import jp.craftman1take.composeimpl.ui.modalbottomsheet.ModalBottomSheetActivity
 import jp.craftman1take.composeimpl.ui.scaffold.ScaffoldActivity
 import jp.craftman1take.composeimpl.ui.theme.ComposeImplTheme
 
@@ -37,7 +39,8 @@ class MainActivity : ComponentActivity() {
         SIMPLE_CONSTRAINTLAYOUT(Icons.Filled.Edit, "シンプルな ConstraintLayout", ConstraintLayoutActivity::class.java),
         CONTENT_SCALE_VARIATION(Icons.Filled.Check, "ContentScale のバリエーションと効果を確認", ContentScaleActivity::class.java),
         COMPOSE_BY_FRAGMENT(Icons.Filled.Create, "Fragment で Compose を使ってみた", ComposeByFragmentActivity::class.java),
-        USE_SCAFFOLD(Icons.Filled.Refresh, "Scaffold で色々やってみた", ScaffoldActivity::class.java)
+        MODAL_BOTTOM_SHEET(Icons.Filled.Info, "Model Bottom Sheet を使ってみた", ModalBottomSheetActivity::class.java),
+        USE_SCAFFOLD(Icons.Filled.Refresh, "Scaffold で色々やってみた", ScaffoldActivity::class.java),
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
