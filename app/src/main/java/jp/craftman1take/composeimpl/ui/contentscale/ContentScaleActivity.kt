@@ -137,14 +137,14 @@ fun ComparePictureContent(
     ) {
         PictureComposable(
             title = "Confirm: $contentScaleName",
-            picture = Picture(0, null, R.drawable.picture_01_tmb),
+            picture = Picture(0, "", R.drawable.picture_01_tmb),
             modifier = Modifier.layoutId("confirmation"),
             contentScale = contentScale,
         )
 
         PictureComposable(
             title = "Original (Fit)",
-            picture = Picture(0, null, R.drawable.picture_01_tmb),
+            picture = Picture(0, "", R.drawable.picture_01_tmb),
             modifier = Modifier.layoutId("original"),
             contentScale = ContentScale.Fit,
         )

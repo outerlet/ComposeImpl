@@ -20,7 +20,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import jp.craftman1take.composeimpl.data.Picture
-import jp.craftman1take.composeimpl.data.thumbnailPictures
+import jp.craftman1take.composeimpl.data.thumbnailPictureList
 
 enum class PictureListOrder {
     FORWARD,
@@ -76,7 +76,7 @@ fun PictureList(
 @Composable
 fun PictureColumnPreview() {
     PictureList(
-        pictureList = thumbnailPictures,
+        pictureList = thumbnailPictureList,
         orientation = Orientation.Vertical,
     )
 }
@@ -85,7 +85,7 @@ fun PictureColumnPreview() {
 @Composable
 fun PictureRowPreview() {
     PictureList(
-        pictureList = thumbnailPictures,
+        pictureList = thumbnailPictureList,
         orientation = Orientation.Horizontal,
     )
 }

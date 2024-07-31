@@ -11,7 +11,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import jp.craftman1take.composeimpl.data.Picture
-import jp.craftman1take.composeimpl.data.thumbnailPictures
+import jp.craftman1take.composeimpl.data.thumbnailPictureList
 
 @Composable
 fun PictureGrid(
@@ -49,7 +49,7 @@ fun PictureGrid(
 @Composable
 fun VerticalPictureGridPreview() {
     PictureGrid(
-        pictureList = thumbnailPictures,
+        pictureList = thumbnailPictureList,
         orientation = Orientation.Vertical,
         countOfLine = 3,
     )
@@ -59,7 +59,7 @@ fun VerticalPictureGridPreview() {
 @Composable
 fun HorizontalPictureGridPreview() {
     PictureGrid(
-        pictureList = thumbnailPictures,
+        pictureList = thumbnailPictureList,
         orientation = Orientation.Horizontal,
         countOfLine = 3,
     )

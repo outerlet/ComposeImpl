@@ -32,7 +32,7 @@ import androidx.compose.ui.unit.dp
 import jp.craftman1take.composeimpl.composable.ScaffoldBottomAppBar
 import jp.craftman1take.composeimpl.composable.ScaffoldFloatingActionButton
 import jp.craftman1take.composeimpl.composable.ScaffoldTopAppBar
-import jp.craftman1take.composeimpl.data.pictures
+import jp.craftman1take.composeimpl.data.pictureList
 import jp.craftman1take.composeimpl.ui.theme.ComposeImplTheme
 import kotlinx.coroutines.launch
 
@@ -109,7 +109,7 @@ class ScaffoldActivity : ComponentActivity() {
                         .fillMaxSize(),
                 ) {
                     items(
-                        items = pictures,
+                        items = pictureList,
                         key = { p -> p.id },
                     ) { picture ->
                         Image(

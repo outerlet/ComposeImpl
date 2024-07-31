@@ -29,7 +29,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
-import jp.craftman1take.composeimpl.data.pictures
+import jp.craftman1take.composeimpl.data.pictureList
 import jp.craftman1take.composeimpl.ui.theme.ComposeImplTheme
 
 data class ImageItem(val id: Int, @DrawableRes val imageResId: Int)
@@ -55,7 +55,7 @@ fun MainContent() {
         val (listRef, spaceRef, buttonRef) = createRefs()
         val itemList = remember {
             mutableStateOf(
-                pictures.subList(0, 5).mapIndexed { index, picture ->
+                pictureList.subList(0, 5).mapIndexed { index, picture ->
                     ImageItem(index, picture.resId)
                 }
             )

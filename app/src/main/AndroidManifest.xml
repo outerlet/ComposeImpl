@@ -37,6 +37,9 @@
         <activity
             android:name=".ui.composebyfragment.ComposeByFragmentActivity"
             android:exported="false" />
+        <activity
+            android:name=".ui.pager.PagerActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
