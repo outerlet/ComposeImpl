@@ -23,7 +23,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.constraintlayout.ConstraintLayoutActivity"
+            android:name=".ui.constraintlayout.ListAndButtonActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.constraintlayout.ImageAndButtonActivity"
             android:exported="false" />
         <activity
             android:name=".ui.contentscale.ContentScaleActivity"

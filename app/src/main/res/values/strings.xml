@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">ComposeImpl</string>
+
+    <string name="message_icon_convenience">（注意）\n各ボタンのアイコンは適当なものを選択しているだけで、特に意味はありません</string>
+
+    <string name="label_list_and_button">リストとボタン (ConstraintLayout)</string>
+    <string name="label_image_and_button">画像とボタン (ConstraintLayout)</string>
+    <string name="label_content_scale">ContentScale のバリエーションと効果</string>
+    <string name="label_fragment_compose">Fragment で Compose</string>
+    <string name="label_modal_bottom_sheet">Model Bottom Sheet の挙動</string>
+    <string name="label_horizontal_pager">シンプルな Horizontal Pager</string>
+    <string name="label_try_scaffold">Scaffold で色々やってみた</string>
 </resources>
