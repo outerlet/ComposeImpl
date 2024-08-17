@@ -20,8 +20,8 @@
 
 | ConstraintLayout(1) | ConstraintLayout(2) | Image.contentScale | Fragment |
 |:---:|:---:|:---:|:---:|
-| <img src="./images/1_constraintlayout-1.png" width="240" /> | <img src="./images/2_constraintlayout-2.png" width="240" /> | <img src="./images/3_confirm-content-scale.png" width="240" /> | <img src="./images/4_compose-on-fragment.png" width="240" /> |
+| <img src="./images/1_constraintlayout-1.png" width="180" /> | <img src="./images/2_constraintlayout-2.png" width="180" /> | <img src="./images/3_confirm-content-scale.png" width="180" /> | <img src="./images/4_compose-on-fragment.png" width="180" /> |
 
 | ModalBottomSheet | HorizontalPager | Scaffold + App bars + FAB |
 |:---:|:---:|:---:|
-| <img src="./images/5_modal-bottom-sheet.png" width="240" /> | <img src="./images/6_pager.png" width="240" /> | <img src="./images/7_scaffold.png" width="240" /> |
+| <img src="./images/5_modal-bottom-sheet.png" width="180" /> | <img src="./images/6_pager.png" width="180" /> | <img src="./images/7_scaffold.png" width="180" /> |
